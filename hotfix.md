@@ -34,3 +34,11 @@
         请替换<你的分支名>为你当前工作的分支名。这样，你就成功地将特定的commit从VinGarcia的add-panic-handler分支cherry-pick到了你的fork。
 
     ```
+* 如何使用fork的仓库作为module添加到程序中
+  如果您需要立即使用您的修复版本，可以在您的Go项目中使用replace指令来指定您Fork的版本。在您的go.mod文件中添加如下行：
+  
+  `·replace module_name => github.com/your_username/repository_name@branch_name`
+
+  这样，当您运行go build或go mod tidy时，Go工具链会使用您指定的Fork和分支上的代码，而不是原始模块的代码。
+
+  记得在原始仓库的Pull Request被接受并合并后，更新您的go.mod文件以使用官方版本，同时移除replace指令。
